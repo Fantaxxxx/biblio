@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Détails du livre</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container mt-4">
+
+<?php 
+include 'entete.html'; 
+require_once('connexion_biblio.php');
+
+if(isset($_GET['id'])) {
+    $id = intval($_GET['id']); // sécurisation de l'ID
+
+    $stmt = $connexion->prepare("SELECT * FROM livre WHERE nolivre = ?");
+    $stmt->execute([$id]);
+    $livre = $stmt->fetch(PDO::FETCH_OBJ);
+
+    if($livre) {
+        echo '<h1>' . $livre->titre . '</h1>';
+
+        // Affichage de l'image
+        echo '<p><strong>Photo :</strong><br><img src="covers/' . $livre->photo . '" alt="Image du livre" style="max-width:300px;"></p>';
+
+        // Affichage de la description
+        echo '<p><strong>Description :</strong><br>' . $livre->detail . '</p>';
+
+    } else {
+        echo '<p>Livre non trouvé.</p>';
+    }
+} else {
+    echo '<p>ID du livre non spécifié.</p>';
+}
+?>
+
+<p><a href="lister_livres.php" class="btn btn-primary mt-3">← Retour à la liste</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between align-items-start w-100">
+
+    <!-- COLONNE GAUCHE : header + navbar -->
+    <div class="flex-grow-1">
+
+        <header><h5>
+            La Bibliothèque de Moulinsart est fermée au public jusqu'à nouvel ordre. 
+            Mais il vous est possible de réserver et retirer vos livres via notre service Biblio Drive !
+        </h5></header></p>
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="page_accueil.php">Accueil</a>
+          
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Panier</a>
+                  </li>
+                </ul>
+          
+                <form class="d-flex" method="get" action="recherche_auteur.php">
+                    <input class="form-control me-2" type="text" name="auteur" placeholder="Rechercher un auteur">
+                    <button class="btn btn-primary" type="submit">Rechercher</button>
+                </form>                  
+              </div>
+            </div>
+          </nav>          
+
+    </div>
+
+    <!-- COLONNE DROITE : ton IMAGE en haut à droite -->
+    <img src="covers/Chateau_moulinsart.jpg" alt="chateau" style="height:150px;" class="ms-3">
+
+</div>
