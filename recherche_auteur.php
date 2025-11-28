@@ -27,34 +27,25 @@ $auteurs = $stmt->fetchAll();
 ?>
 
 <div class="container mt-4">
-<h3>Résultats pour : <span class="text-primary"><?php echo $recherche; ?></span></h3>
+<h3>Résultats pour : <span class="text-primary"><?php echo $recherche; ?></h3>
 
 <?php
 if (count($auteurs) == 0) {
     echo "<p class='text-danger mt-3'>Aucun auteur trouvé.</p>";
 } else {
     foreach ($auteurs as $auteur) {
-        echo "<h4 class='mt-4'>{$auteur->prenom} {$auteur->nom}</h4>";
+        echo "<h4>{$auteur->prenom} {$auteur->nom} :</h4>";
 
         $stmt2 = $connexion->prepare("SELECT * FROM livre WHERE noauteur = :id");
         $stmt2->bindValue(':id', $auteur->noauteur, PDO::PARAM_INT);
         $stmt2->setFetchMode(PDO::FETCH_OBJ);
         $stmt2->execute();
         $livres = $stmt2->fetchAll();
-
-        if (count($livres) == 0) {
-            echo "<p>Aucun livre trouvé.</p>";
-        } else {
-            echo "<ul class='list-group mt-2'>";
-            foreach ($livres as $livre) {
-                echo "<li class='list-group-item'><a href='details_livres.php?id={$livre->nolivre}'>{$livre->titre}</a></li>";
-            }
-            echo "</ul>";
+        foreach ($livres as $livre) {
+            echo "<li class='list-group-item'><a href='details_livres.php?id={$livre->nolivre}'>{$livre->titre}</a></li>";}
         }
     }
-}
 ?>
-
 </div>
 </body>
 </html>

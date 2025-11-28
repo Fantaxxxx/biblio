@@ -25,18 +25,28 @@ include 'entete.html';
     <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
   </div>
-  
+<?php
+require_once('connexion_biblio.php');
+$stmt = $connexion->prepare("SELECT * FROM livre ORDER BY dateajout DESC");
+$stmt->setFetchMode(PDO::FETCH_OBJ);
+$stmt->execute();
+$enregistrement = $stmt->fetch();
+$image1 = $stmt->fetch();
+$image2 = $stmt->fetch();
+$image3 = $stmt->fetch();
+
+?>
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="covers/1984.jpg" alt="Los Angeles" class="mx-auto d-block" style="width:20%">
+      <img src="covers/'.$image1->photo.'" alt="Los Angeles" class="mx-auto d-block" style="width:20%">
     </div>
   
     <div class="carousel-item">
-      <img src="covers/Anna_Karenine.jpg" alt="Chicago" class="mx-auto d-block" style="width:20%">
+      <img src="covers/'.$image2->photo.'" alt="Chicago" class="mx-auto d-block" style="width:20%">
     </div>
     <div class="carousel-item">
-      <img src="covers/Bartleby_le_Scribe.jpg" alt="New York" class="mx-auto d-block" style="width:20%">
+      <img src="covers/'.$image3->photo.'" alt="New York" class="mx-auto d-block" style="width:20%">
     </div>
   </div>
   
