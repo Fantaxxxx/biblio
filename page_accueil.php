@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-
 <?php 
 include 'entete.html'; 
 ?>
+
 <div class="container-fluid mt-3">
   <p><h3 align="center"><font color="green">Dernières acquisitions</font></h3></p>
 </div>
@@ -34,8 +24,7 @@ $enregistrement = $stmt->fetch();
 $image1 = $stmt->fetch();
 $image2 = $stmt->fetch();
 $image3 = $stmt->fetch();
-
-?>
+echo '
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -48,8 +37,8 @@ $image3 = $stmt->fetch();
     <div class="carousel-item">
       <img src="covers/'.$image3->photo.'" alt="New York" class="mx-auto d-block" style="width:20%">
     </div>
-  </div>
-  
+  </div>'
+  ?>
   <!-- Left and right controls/icons -->
   <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev" style="width:82%">
     <span class="carousel-control-prev-icon"></span>
@@ -58,5 +47,4 @@ $image3 = $stmt->fetch();
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
-</body>
-</html>
+
